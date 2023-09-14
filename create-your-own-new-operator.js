@@ -16,8 +16,7 @@ Pay attention to the return type of constructor.
  * `myNew(constructor, ...args)` should return the same as `new constructor(...args)`
  */
 const myNew = (constructor, ...args) => {
-  const ctx = {}
-  Object.setPrototypeOf(ctx, constructor.prototype)
+  const ctx = Object.create(constructor.prototype ?? Object.prototype)
   const ans = constructor.apply(ctx, args)
   if(typeof ans === 'object' && ans !== null) return ans
   return ctx
